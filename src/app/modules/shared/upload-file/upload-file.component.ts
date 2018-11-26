@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FileService} from '../../../services/file.service';
 
-interface IUploadedResponse {
+interface IUploadResponse {
   success: boolean;
   key: string;
   link: string;
@@ -18,7 +18,7 @@ export class UploadFileComponent {
 
   files: File[] = [];
   isUploadStarted = false;
-  uploadedFile: IUploadedResponse;
+  uploadedFile: IUploadResponse;
 
   constructor(protected fileService: FileService) { }
 
@@ -26,7 +26,7 @@ export class UploadFileComponent {
       this.setUploadStartedValue(true);
 
       this.fileService.upload(this.files)
-        .subscribe((response: IUploadedResponse) => {
+        .subscribe((response: IUploadResponse) => {
           if (response.success) {
             this.uploadedFile = Object.assign(response);
           }
